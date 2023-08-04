@@ -7,7 +7,6 @@ export default function PlanetPage() {
     const [planetName, setPlanetName] = useState('');
     const [hazardous, setHazardous] = useState(false);
     const [priceEstimate, setPriceEstimate] = useState("");
-    const APININJA = Deno.env.get("API_NINJA_KEY")
 
     useEffect(() => {
         if (!data || !data.distance_light_year){
@@ -27,7 +26,7 @@ export default function PlanetPage() {
     const fetchPlanet = async () => {
 
         const response = await fetch(`https://api.api-ninjas.com/v1/planets?name=${planetName}`, {
-            headers: {'X-Api-Key': 'm/jBujjh0JzEhse5IA5HvA==phxNAGd6Jm50hFE2'}
+            headers: {'X-Api-Key': Deno.env.get('API_NINJA_KEY')}
         });
 
         if (response.status === 200) {
