@@ -27,7 +27,7 @@ export default function PlanetPage() {
     const fetchPlanet = async () => {
 
         const response = await fetch(`https://api.api-ninjas.com/v1/planets?name=${planetName}`, {
-            headers: {'X-Api-Key': APININJA}
+            headers: {'X-Api-Key': 'm/jBujjh0JzEhse5IA5HvA==phxNAGd6Jm50hFE2'}
         });
 
         if (response.status === 200) {
