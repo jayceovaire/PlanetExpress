@@ -7,7 +7,6 @@ export default function Shipping() {
     return (
         <body class={"bg-green-300"}>
             <Header />
-            <div>Shipping Page Works!</div>
             <form className="w-full max-w-sm mx-auto">
   <div className="mb-4">
     <label htmlFor="name" className="block mb-1">Name / Company Name</label>

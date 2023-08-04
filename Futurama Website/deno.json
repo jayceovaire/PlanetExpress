@@ -5,7 +5,6 @@
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "imports": {
-
     "$fresh/": "https://deno.land/x/fresh@1.2.0/",
     "preact": "https://esm.sh/preact@10.15.1",
     "preact/": "https://esm.sh/preact@10.15.1/",

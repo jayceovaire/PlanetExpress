@@ -1,12 +1,14 @@
-import { useState } from 'https://esm.sh/preact@10.15.1/hooks';
+import { useState } from 'preact/hooks';
 import {useEffect} from "https://esm.sh/stable/preact@10.15.1/denonext/hooks.js";
-
+import env = Deno.env;
+env
 
 export default function PlanetPage() {
     const [data, setData] = useState(null);
     const [planetName, setPlanetName] = useState('');
     const [hazardous, setHazardous] = useState(false);
     const [priceEstimate, setPriceEstimate] = useState("");
+    let planet_key = 'm/jBujjh0JzEhse5IA5HvA==phxNAGd6Jm50hFE2'
 
     useEffect(() => {
         if (!data || !data.distance_light_year){
@@ -26,7 +28,7 @@ export default function PlanetPage() {
     const fetchPlanet = async () => {
 
         const response = await fetch(`https://api.api-ninjas.com/v1/planets?name=${planetName}`, {
-            headers: {'X-Api-Key': Deno.env.get('API_NINJA_KEY')}
+            headers: {'X-Api-Key': planet_key}
         });
 
         if (response.status === 200) {
