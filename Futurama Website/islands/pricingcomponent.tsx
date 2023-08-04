@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useState } from 'https://esm.sh/preact@10.15.1/hooks';
 import {useEffect} from "https://esm.sh/stable/preact@10.15.1/denonext/hooks.js";
 
 

@@ -1,5 +1,4 @@
-import { ComponentChildren } from "preact";
-import PlanetLogo from "../components/PlanetLogo.tsx";
+import { ComponentChildren } from "https://esm.sh/preact@10.15.1";
 import BrandGithub from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-github.tsx";
 
 type Props = {
