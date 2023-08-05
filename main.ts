@@ -11,11 +11,13 @@ import manifest from "./fresh.gen.ts";
 
 import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
-import * as mod from "https://deno.land/std@0.197.0/dotenv/mod.ts";
-
+import * as mod from "https://deno.land/std@0.197.0/flags/mod.ts";
 import {load} from "https://deno.land/std@0.197.0/dotenv/mod.ts";
+await load()
 
-console.log(await load())
+
+const planet_key = Deno.env.get('PLANET_KEY')
+export default planet_key
 
 
 await start(manifest, { plugins: [twindPlugin(twindConfig)] });

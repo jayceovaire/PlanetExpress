@@ -2,12 +2,11 @@ import { useState } from 'preact/hooks';
 import {useEffect} from "https://esm.sh/stable/preact@10.15.1/denonext/hooks.js";
 
 
-export default function PlanetPage() {
+export default function PlanetPage({planet_key}) {
     const [data, setData] = useState(null);
     const [planetName, setPlanetName] = useState('');
     const [hazardous, setHazardous] = useState(false);
     const [priceEstimate, setPriceEstimate] = useState("");
-
 
 
     useEffect(() => {
@@ -28,12 +27,16 @@ export default function PlanetPage() {
     const fetchPlanet = async () => {
 
         const response = await fetch(`https://api.api-ninjas.com/v1/planets?name=${planetName}`, {
-            headers: {'X-Api-Key': Deno.env.get('PLANET_KEY')}
+            headers: {'X-Api-Key': planet_key}
         });
 
         if (response.status === 200) {
             const planetData = await response.json();
             setData(planetData[0]);  // If the API returns an array, we only want the first item
+        }
+        else if(response.status !== 200){
+            console.error(`ERROR: ${response.status}`)
+            return;
         }
     };
 
