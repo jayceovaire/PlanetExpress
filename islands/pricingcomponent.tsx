@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 import {useEffect} from "https://esm.sh/stable/preact@10.15.1/denonext/hooks.js";
-import { load} from "https://deno.land/std@0.197.0/dotenv/mod.ts";
+
 
 export default function PlanetPage() {
     const [data, setData] = useState(null);
@@ -8,7 +8,6 @@ export default function PlanetPage() {
     const [hazardous, setHazardous] = useState(false);
     const [priceEstimate, setPriceEstimate] = useState("");
 
-    const planet_key = ''
 
 
     useEffect(() => {
@@ -29,7 +28,7 @@ export default function PlanetPage() {
     const fetchPlanet = async () => {
 
         const response = await fetch(`https://api.api-ninjas.com/v1/planets?name=${planetName}`, {
-            headers: {'X-Api-Key': planet_key}
+            headers: {'X-Api-Key': Deno.env.get('PLANET_KEY')}
         });
 
         if (response.status === 200) {
