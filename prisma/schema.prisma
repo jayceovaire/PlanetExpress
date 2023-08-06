@@ -10,20 +10,27 @@ datasource db {
   relationMode = "prisma"
 }
 
+model Shipment {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @updatedAt
+  updatedAt   DateTime @updatedAt
+  planet      String
+  hazardous   Boolean
+  animal      Boolean
+  fragile     Boolean
+  oversize    Boolean
+  description String
+  cost        Int
+}
+
 model Log {
-  id      Int    @id @default(autoincrement())
-  level   Level
+  id      Int       @id @default(autoincrement())
+  level   Log_level
   message String
   meta    Json
 }
 
-model Test {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @updatedAt
-  updatedAt DateTime @updatedAt
-}
-
-enum Level {
+enum Log_level {
   Info
   Warn
   Error

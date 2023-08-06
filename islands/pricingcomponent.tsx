@@ -6,6 +6,9 @@ export default function PlanetPage({planet_key}) {
     const [data, setData] = useState(null);
     const [planetName, setPlanetName] = useState('');
     const [hazardous, setHazardous] = useState(false);
+    const [liveAnimal, setLiveAnimal] = useState(false);
+    const [fragile, setFragile] = useState(false);
+    const [oversize, setOversize] = useState(false);
     const [priceEstimate, setPriceEstimate] = useState("");
 
 
@@ -13,15 +16,30 @@ export default function PlanetPage({planet_key}) {
         if (!data || !data.distance_light_year){
             setPriceEstimate("")
         }
-        if (!hazardous){
-            setPriceEstimate(data.distance_light_year > 100 ? '$' + data.distance_light_year * 10 :
-                data.distance_light_year > 1 ? data.distance_light_year * 1000 : "$1000")
+
+        if (data){
+            let multiplier = 1
+            let newEstimate = data.distance_light_year > 100 ? data.distance_light_year * 10 : data.distance_light_year > 1 ?   data.distance_light_year * 1000 : 1000
+
+            if (hazardous) {
+                multiplier *= 1.45;
+            }
+            if (liveAnimal) {
+                multiplier *= 1.15;
+            }
+            if (fragile) {
+                multiplier *= 1.25;
+            }
+            if (oversize) {
+                multiplier *= 1.35;
+            }
+
+            newEstimate *= multiplier;
+            setPriceEstimate(newEstimate);
+
         }
-        if (hazardous) {
-            setPriceEstimate(data.distance_light_year > 100 ? '$' + data.distance_light_year * 15 :
-                data.distance_light_year > 1 ? data.distance_light_year * 1500 : "$1500")
-        }
-    }, [hazardous, data])
+
+    }, [hazardous, liveAnimal, fragile, oversize, data])
 
 
     const fetchPlanet = async () => {
@@ -48,9 +66,15 @@ export default function PlanetPage({planet_key}) {
             <div class={"grid grid-cols-12 gap-4 m-4"}>
                 <input type={'checkbox'} id={'dangerCheckbox'} className={'col-start-5 col-span-2 form-checkbox mr-2'} onChange={e => setHazardous(e.target.checked)} />
                 <label className={'col-start-7 col-span-2 text-center bg-yellow-200 rounded-sm'} htmlFor={'dangerCheckbox'}>Hazardous Material?</label>
+                <input type={'checkbox'} id={'dangerCheckbox'} className={'col-start-5 col-span-2 form-checkbox mr-2'} onChange={e => setLiveAnimal(e.target.checked)} />
+                <label className={'col-start-7 col-span-2 text-center bg-yellow-200 rounded-sm'} htmlFor={'dangerCheckbox'}>Live Animal?</label>
+                <input type={'checkbox'} id={'dangerCheckbox'} className={'col-start-5 col-span-2 form-checkbox mr-2'} onChange={e => setFragile(e.target.checked)} />
+                <label className={'col-start-7 col-span-2 text-center bg-yellow-200 rounded-sm'} htmlFor={'dangerCheckbox'}>Fragile?</label>
+                <input type={'checkbox'} id={'dangerCheckbox'} className={'col-start-5 col-span-2 form-checkbox mr-2'} onChange={e => setOversize(e.target.checked)} />
+                <label className={'col-start-7 col-span-2 text-center bg-yellow-200 rounded-sm'} htmlFor={'dangerCheckbox'}>Oversize?</label>
+
                 <input placeholder={'Type Planet Name Here'} class={'col-start-5 col-span-2'} type="text" value={planetName} onChange={e => setPlanetName(e.target.value)} />
             <button class={'bg-red-400 rounded-sm col-start-7 col-span-2'} onClick={fetchPlanet}>Fetch Planet</button>
-
             </div>
 
             {!data && (
