@@ -1,66 +1,73 @@
 import Header from "../islands/Header.tsx";
 import Footer from "../islands/Footer.tsx";
+import {h} from "https://esm.sh/stable/preact@10.15.1/denonext/preact.mjs";
 
 // Form needs action attribute
 
-async function handleSubmit(event) {
-  event.preventDefault();
-  const response = await fetch("/api/shipment", {
-    method: "POST",
-    body: JSON.stringify({
-      name: event.target.name.value,
-      hazardous: event.target.hazardous.checked,
-      liveAnimal: event.target.liveAnimal.checked,
-      fragile: event.target.fragile.checked,
-      oversize: event.target.oversize.checked,
-      description: event.target.description.value,
-      destination: event.target.destination.value,
-      email: event.target.email.value,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 
-  if (response.ok) {
-    console.log("Data was successfully sent to the server");
-  } else {
-    console.log("Error: Data was not sent to the server");
-  }
-}
 
 export default function Shipping() {
+
+  const [shipmentData, setShipmentData] = useState({
+        name: "",
+        packageType: "",
+        destination: "",
+        email: ""
+    });
+
+    const handleChange = (event) => {
+        setShipmentData({
+            ...shipmentData,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const response = await fetch("/api/shipment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(shipmentData)
+        });
+
+        const data = await response.json();
+        console.log(data);
+    };
+
     return (
         <body class={"bg-green-300"}>
             <Header />
             <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto">
   <div className="mb-4">
     <label htmlFor="name" className="block mb-1">Name / Company Name</label>
-    <input required={true} id="name" type="text" className="w-full px-3 py-2 border rounded-md" />
+    <input onChange={handleChange} name={'name'} required={true} id="name" type="text" className="w-full px-3 py-2 border rounded-md" />
   </div>
 
   <div className="mb-4">
     <label className="block mb-1">Package type</label>
     <fieldset className="space-y-2">
       <label htmlFor="hazardous">
-        <input id="hazardous" type="checkbox" className="mr-2 ml-2" />
+        <input onChange={handleChange} name={'hazardous'} id="hazardous" type="checkbox" className="mr-2 ml-2" />
         Hazardous
       </label>
       <label htmlFor="liveAnimal">
-        <input id="liveAnimal" type="checkbox" className="mr-2 ml-2" />
+        <input onChange={handleChange} name={'liveAnimal'} id="liveAnimal" type="checkbox" className="mr-2 ml-2" />
         Live Animal
       </label>
       <label htmlFor="fragile">
-        <input id="fragile" type="checkbox" className="mr-2 ml-2" />
+        <input onChange={handleChange} name={'fragile'} id="fragile" type="checkbox" className="mr-2 ml-2" />
         Fragile
       </label>
       <label htmlFor="oversize">
-        <input id="oversize" type="checkbox" className="mr-2 ml-2" />
+        <input onChange={handleChange} name={'oversize'} id="oversize" type="checkbox" className="mr-2 ml-2" />
         Oversize
       </label>
       <br></br>
       <label htmlFor={'description'}>Description of Package
-        <textarea required={true} id={'description'} name="description" cols="50" rows="5"></textarea>
+        <textarea onChange={handleChange} required={true} id={'description'} name="description" cols="50" rows="5"></textarea>
       </label>
     </fieldset>
   </div>
