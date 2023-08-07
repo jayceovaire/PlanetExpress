@@ -17,29 +17,6 @@ import {prisma} from "./lib/prisma.ts";
 
 await load()
 
-const shipment = await prisma.shipment.findFirst({
-    select: {
-    id: true,
-    createdAt: true,
-    updatedAt: true,
-    planet: true,
-    hazardous: false,
-    animal: false,
-    fragile: false,
-    oversize: false,
-    description: true,
-    cost: true,
-    email: true,
-    name: true
-  },
-    where: {
-        id: 7
-    },
-  take: 1
-})
-
-
-console.log(shipment)
 
 // Getting environment variables for API use
 const planet_key = Deno.env.get('PLANET_KEY')

@@ -2,33 +2,35 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/[planet].tsx";
-import * as $1 from "./routes/about.tsx";
-import * as $2 from "./routes/api/create.ts";
-import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/pricing.tsx";
-import * as $5 from "./routes/shipping.tsx";
+import * as $0 from "./routes/about.tsx";
+import * as $1 from "./routes/api/create.ts";
+import * as $2 from "./routes/index.tsx";
+import * as $3 from "./routes/pricing.tsx";
+import * as $4 from "./routes/shipping.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 import * as $$1 from "./islands/Footer.tsx";
 import * as $$2 from "./islands/Header.tsx";
 import * as $$3 from "./islands/Hero.tsx";
-import * as $$4 from "./islands/pricingcomponent.tsx";
+import * as $$4 from "./islands/ShippingPage.tsx";
+import * as $$5 from "./islands/TestComp.tsx";
+import * as $$6 from "./islands/pricingcomponent.tsx";
 
 const manifest = {
   routes: {
-    "./routes/[planet].tsx": $0,
-    "./routes/about.tsx": $1,
-    "./routes/api/create.ts": $2,
-    "./routes/index.tsx": $3,
-    "./routes/pricing.tsx": $4,
-    "./routes/shipping.tsx": $5,
+    "./routes/about.tsx": $0,
+    "./routes/api/create.ts": $1,
+    "./routes/index.tsx": $2,
+    "./routes/pricing.tsx": $3,
+    "./routes/shipping.tsx": $4,
   },
   islands: {
     "./islands/Counter.tsx": $$0,
     "./islands/Footer.tsx": $$1,
     "./islands/Header.tsx": $$2,
     "./islands/Hero.tsx": $$3,
-    "./islands/pricingcomponent.tsx": $$4,
+    "./islands/ShippingPage.tsx": $$4,
+    "./islands/TestComp.tsx": $$5,
+    "./islands/pricingcomponent.tsx": $$6,
   },
   baseUrl: import.meta.url,
 };

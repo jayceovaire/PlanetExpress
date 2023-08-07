@@ -6,7 +6,7 @@ export default function PlanetPage({planet_key}) {
     const [data, setData] = useState(null);
     const [planetName, setPlanetName] = useState('');
     const [hazardous, setHazardous] = useState(false);
-    const [liveAnimal, setLiveAnimal] = useState(false);
+    const [animal, setAnimal] = useState(false);
     const [fragile, setFragile] = useState(false);
     const [oversize, setOversize] = useState(false);
     const [priceEstimate, setPriceEstimate] = useState("");
@@ -24,7 +24,7 @@ export default function PlanetPage({planet_key}) {
             if (hazardous) {
                 multiplier *= 1.45;
             }
-            if (liveAnimal) {
+            if (animal) {
                 multiplier *= 1.15;
             }
             if (fragile) {
@@ -39,7 +39,7 @@ export default function PlanetPage({planet_key}) {
 
         }
 
-    }, [hazardous, liveAnimal, fragile, oversize, data])
+    }, [hazardous, animal, fragile, oversize, data])
 
 
     const fetchPlanet = async () => {
@@ -66,7 +66,7 @@ export default function PlanetPage({planet_key}) {
             <div class={"grid grid-cols-12 gap-4 m-4"}>
                 <input type={'checkbox'} id={'dangerCheckbox'} className={'col-start-5 col-span-2 form-checkbox mr-2'} onChange={e => setHazardous(e.target.checked)} />
                 <label className={'col-start-7 col-span-2 text-center bg-yellow-200 rounded-sm'} htmlFor={'dangerCheckbox'}>Hazardous Material?</label>
-                <input type={'checkbox'} id={'dangerCheckbox'} className={'col-start-5 col-span-2 form-checkbox mr-2'} onChange={e => setLiveAnimal(e.target.checked)} />
+                <input type={'checkbox'} id={'dangerCheckbox'} className={'col-start-5 col-span-2 form-checkbox mr-2'} onChange={e => setAnimal(e.target.checked)} />
                 <label className={'col-start-7 col-span-2 text-center bg-yellow-200 rounded-sm'} htmlFor={'dangerCheckbox'}>Live Animal?</label>
                 <input type={'checkbox'} id={'dangerCheckbox'} className={'col-start-5 col-span-2 form-checkbox mr-2'} onChange={e => setFragile(e.target.checked)} />
                 <label className={'col-start-7 col-span-2 text-center bg-yellow-200 rounded-sm'} htmlFor={'dangerCheckbox'}>Fragile?</label>
@@ -137,3 +137,4 @@ export default function PlanetPage({planet_key}) {
         </div>
     );
 }
+
