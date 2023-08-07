@@ -4,10 +4,9 @@
 
 import * as $0 from "./routes/[planet].tsx";
 import * as $1 from "./routes/about.tsx";
-import * as $2 from "./routes/api/shipment.ts";
-import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/pricing.tsx";
-import * as $5 from "./routes/shipping.tsx";
+import * as $2 from "./routes/index.tsx";
+import * as $3 from "./routes/pricing.tsx";
+import * as $4 from "./routes/shipping.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 import * as $$1 from "./islands/Footer.tsx";
 import * as $$2 from "./islands/Header.tsx";
@@ -18,10 +17,9 @@ const manifest = {
   routes: {
     "./routes/[planet].tsx": $0,
     "./routes/about.tsx": $1,
-    "./routes/api/shipment.ts": $2,
-    "./routes/index.tsx": $3,
-    "./routes/pricing.tsx": $4,
-    "./routes/shipping.tsx": $5,
+    "./routes/index.tsx": $2,
+    "./routes/pricing.tsx": $3,
+    "./routes/shipping.tsx": $4,
   },
   islands: {
     "./islands/Counter.tsx": $$0,
