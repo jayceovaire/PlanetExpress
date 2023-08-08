@@ -21,18 +21,6 @@ export default function About() {
             <div className={'grid grid-cols-6'}>
             <p className={'col-start-2 col-span-4'}>{farnsworthBio}</p>
             </div>
-            <h1 class={'text-3xl font-bold text-center m-10 col-start-4 col-span-5'}>Meet the Crew</h1>
-            <div className={'flex justify-center'}>
-            <div className={'grid grid-cols-12 grid-rows-10'}>
-                <div class={'row-start-2 col-start-4 col-span-2'}>Fry</div>
-                <div class={'row-start-2 col-start-6 col-span-2'}>Leela</div>
-                <div class={'row-start-2 col-start-8 col-span-2'}>Bender</div>
-                <div class={'row-start-3 col-start-4 col-span-2'}>Amy</div>
-                <div class={'row-start-3 col-start-6 col-span-2'}>Zoidberg</div>
-                <div class={'row-start-3 col-start-8 col-span-2'}>Hermes</div>
-                <div class={'row-start-4 col-start-4 col-span-2'}>Scruffy</div>
-            </div>
-            </div>
                 <Footer />
         </body>
 

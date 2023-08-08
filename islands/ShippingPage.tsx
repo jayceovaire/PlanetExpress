@@ -1,8 +1,9 @@
+import Header from "../islands/Header.tsx";
+import Footer from "../islands/Footer.tsx";
 import {useEffect, useState} from 'preact/hooks';
+import planet_key from "../main.ts";
 
-
-
-const ShippingPage = () => {
+export default function ShippingPageData() {
 
   const [state, setState] = useState({
     name: '',
@@ -18,6 +19,7 @@ const ShippingPage = () => {
 
 
   const handleChange = (event) => {
+
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
     setState({
       ...state,
@@ -25,9 +27,35 @@ const ShippingPage = () => {
     });
   };
 
+  const fetchPlanetData = async (planetName) => {
+    const response = await fetch(`https://api.api-ninjas.com/v1/planets?name=${planetName}`, {
+      headers: { 'X-Api-Key': planet_key }
+    });
+
+    if (response.status === 200) {
+      const planetData = await response.json();
+      if (planetData && planetData[0]) {
+        const data = planetData[0];
+        // Here you can set the state with planetData or perform any other operations.
+        // For example: setState({ ...state, planetData: data });
+      }
+    } else {
+      console.error(`ERROR: ${response.status}`);
+    }
+  };
+
+  useEffect(() => {
+    // This will fetch planet data every time the planet name changes.
+    if (state.planet) {
+      fetchPlanetData(state.planet);
+    }
+  }, [state.planet]);
+
+
   return (
       <>
     <body class="bg-green-300">
+    <Header />
       <form action={'api/create'} method={'POST'} encType={'multipart/form-data'} className="w-full max-w-sm mx-auto">
         <div className="mb-4">
           <label htmlFor="name" className="block mb-1">Name / Company Name</label>
@@ -56,7 +84,7 @@ const ShippingPage = () => {
               />
               Hazardous
             </label>
-            <label htmlFor="liveAnimal">
+            <label htmlFor="animal">
               <input
                 name="animal"
                 id="animal"
@@ -103,6 +131,18 @@ const ShippingPage = () => {
             </label>
           </fieldset>
         </div>
+        <div className="mb-4">
+          <label htmlFor="email" className="block mb-1">Email Address</label>
+          <input
+            required={true}
+            id="email"
+            type="email"
+            className="w-full px-3 py-2 border rounded-md"
+            name="email"
+            value={state.email}
+            onChange={handleChange}
+          />
+        </div>
 
         <div className="mb-4">
           <label htmlFor="destination" className="block mb-1">Destination</label>
@@ -117,26 +157,15 @@ const ShippingPage = () => {
           />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="email" className="block mb-1">Email Address</label>
-          <input
-            required={true}
-            id="email"
-            type="email"
-            className="w-full px-3 py-2 border rounded-md"
-            name="email"
-            value={state.email}
-            onChange={handleChange}
-          />
-        </div>
 
         <button type="submit" className="block w-full px-4 py-2 mt-4 text-white bg-red-400 rounded-md hover:bg-blue-600">
           Submit
         </button>
       </form>
+
+    <Footer />
     </body>
         </>
   );
 };
 
-export default ShippingPage;
