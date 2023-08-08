@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'preact/hooks';
-import planet_key from "../main.ts";
+import {useEffect, useState} from 'preact/hooks';
+
+
 
 const ShippingPage = () => {
+
   const [state, setState] = useState({
     name: '',
     email: '',
@@ -10,8 +12,10 @@ const ShippingPage = () => {
     animal: false,
     fragile: false,
     oversize: false,
-    description: ''
+    description: '',
+    cost: 0
   });
+
 
   const handleChange = (event) => {
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
@@ -22,6 +26,7 @@ const ShippingPage = () => {
   };
 
   return (
+      <>
     <body class="bg-green-300">
       <form action={'api/create'} method={'POST'} encType={'multipart/form-data'} className="w-full max-w-sm mx-auto">
         <div className="mb-4">
@@ -51,7 +56,7 @@ const ShippingPage = () => {
               />
               Hazardous
             </label>
-            <label htmlFor="animal">
+            <label htmlFor="liveAnimal">
               <input
                 name="animal"
                 id="animal"
@@ -84,6 +89,7 @@ const ShippingPage = () => {
               />
               Oversize
             </label>
+            <br></br>
             <label htmlFor="description">Description of Package
               <textarea
                 required={true}
@@ -99,10 +105,10 @@ const ShippingPage = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="planet" className="block mb-1">Destination</label>
+          <label htmlFor="destination" className="block mb-1">Destination</label>
           <input
             required={true}
-            id="planet"
+            id="destination"
             type="text"
             className="w-full px-3 py-2 border rounded-md"
             name="planet"
@@ -123,14 +129,13 @@ const ShippingPage = () => {
             onChange={handleChange}
           />
         </div>
-        <button
-          type="submit"
-          className="block w-full px-4 py-2 mt-4 text-white bg-red-400 rounded-md hover:bg-blue-600"
-        >
+
+        <button type="submit" className="block w-full px-4 py-2 mt-4 text-white bg-red-400 rounded-md hover:bg-blue-600">
           Submit
         </button>
       </form>
     </body>
+        </>
   );
 };
 
