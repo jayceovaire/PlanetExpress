@@ -25,9 +25,3 @@ model Shipment {
   email       String
   name        String
 }
-
-enum Level {
-  Info
-  Warn
-  Error
-}
